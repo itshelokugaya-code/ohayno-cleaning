@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Охайно — Професійний сервіс прибирання</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00a8e8; /* Яскравий блакитний як акцент */
+            --dark: #1d1d1f;    /* Темний для тексту (як у Apple/Uberem) */
+            --light-bg: #f5f5f7;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--white);
+            color: var(--dark);
+        }
+
+        /* Шапка */
+        header {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: var(--light-bg);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #6e6e73;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Картки послуг */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid #e5e5e5;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 168, 232, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            margin-top: 0;
+            font-size: 1.4rem;
+        }
+
+        .price-tag {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 15px 0;
+        }
+
+        /* Кнопка замовлення */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 16px 32px;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: opacity 0.2s;
+            text-align: center;
+        }
+
+        .cta-button:hover {
+            opacity: 0.9;
+        }
+
+        /* Секція контактів */
+        .contact-section {
+            background-color: var(--light-bg);
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-phone {
+            font-size: 2rem;
+            display: block;
+            margin: 20px 0;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            color: #86868b;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>Охайно</h1>
+        <p>Преміальна якість прибирання у вашому місті</p>
+    </div>
+</header>
+
+<div class="container">
+    <section>
+        <h2 style="font-size: 2rem; text-align: center;">Наші послуги</h2>
+        <div class="services-grid">
+            
+            <div class="service-card">
+                <div>
+                    <h3>Базове прибирання</h3>
+                    <p>Ідеально для регулярної підтримки чистоти.</p>
+                </div>
+                <div class="price-tag">від 800 грн</div>
+            </div>
+
+            <div class="service-card">
+                <div>
+                    <h3>Генеральне прибирання</h3>
+                    <p>Ретельне очищення кожного куточка вашої оселі.</p>
+                </div>
+                <div class="price-tag">від 2500 грн</div>
+            </div>
+
+            <div class="service-card">
+                <div>
+                    <h3>Після ремонту</h3>
+                    <p>Видалення будівельного пилу та залишків матеріалів.</p>
+                </div>
+                <div class="price-tag">від 4000 грн</div>
+            </div>
+
+            <div class="service-card">
+                <div>
+                    <h3>Хімчистка</h3>
+                    <p>Професійна чистка диванів та матраців.</p>
+                </div>
+                <div class="price-tag">від 700 грн</div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <h2>Готові до чистоти?</h2>
+        <p>Залиште заявку або зателефонуйте нам прямо зараз</p>
+        <a href="tel:+380000000000" class="contact-phone">+38 (0XX) XXX-XX-XX</a>
+        <a href="tel:+380000000000" class="cta-button">Замовити прибирання</a>
+    </section>
+</div>
+
+<footer>
+    &copy;
