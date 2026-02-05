@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Охайно - Сучасний клінінг</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- НАЛАШТУВАННЯ (ЗМІННІ) --- */
+        :root {
+            --primary: #4361EE;      /* Яскравий синій */
+            --primary-dark: #3046B5; /* Темніший синій для наведення */
+            --accent: #E0E7FF;       /* Дуже світлий синій фон блоків */
+            --bg-page: #F3F4F6;      /* Фон сторінки */
+            --text-main: #111827;    /* Майже чорний */
+            --text-muted: #6B7280;   /* Сірий */
+            --white: #FFFFFF;
+            
+            --radius-l: 32px;        /* Великі заокруглення */
+            --radius-m: 20px;
+            --radius-btn: 100px;
+            
+            --font-main: 'Manrope', sans-serif;
+        }
+
+        /* --- БАЗА --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.4;
+            padding: 20px; /* Відступ від країв екрану */
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- КОНТЕЙНЕР І СІТКА --- */
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Навігація "плаває" зверху */
+        nav {
+            background: var(--white);
+            padding: 16px 24px;
+            border-radius: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; }
+        .logo span { color: var(--primary); }
+        
+        .nav-links { display: flex; gap: 24px; font-weight: 600; font-size: 15px; }
+        .nav-links a:hover { color: var(--primary); }
+        
+        .nav-btn {
+            background: var(--text-main);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: var(--radius-btn);
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .nav-btn:hover { background: var(--primary); }
+
+        /* --- ГОЛОВНА СІТКА (BENTO GRID) --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+            grid-auto-rows: minmax(200px, auto);
+            gap: 20px;
+        }
+
+        /* Загальний стиль для карток */
+        .card {
+            background: var(--white);
+            border-radius: var(--radius-l);
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px); /* Легкий підйом при наведенні */
+            box-shadow: 0 12px 40px rgba(67, 97, 238, 0.15);
+        }
+
+        /* --- КОНКРЕТНІ БЛОКИ --- */
+
+        /* 1. HERO BLOCK (Великий лівий) */
+        .hero-block {
+            grid-column: span 2; /* Займає 2 колонки */
+            background-color: var(--white);
+            justify-content: center;
+            min-height: 400px;
+        }
+        
+        .hero-title {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+        }
+        
+        .hero-title span { color: var(--primary); }
+        
+        .hero-desc {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            max-width: 80%;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 16px 36px;
+            border-radius: var(--radius-btn);
+            font-weight: 700;
+            font-size: 16px;
+            transition: 0.3s;
+            align-self: flex-start;
+        }
+        .cta-btn:hover { background-color: var(--primary-dark); }
+
+        /* 2. PHOTO BLOCK (Правий верхній) */
+        .photo-block {
+            grid-column: span 1;
+            background-color: #C7D2FE; /* Колір заглушки, якщо немає фото */
+            padding: 0;
+            position: relative;
+        }
+        
+        .photo-block img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Фото заповнює блок */
+            position: absolute;
+            top: 0; left: 0;
+        }
+
+        /* 3. STATS BLOCK (Цифри) */
+        .stat-block {
+            background-color: var(--text-main); /* Темний блок */
+            color: white;
+            justify-content: space-between;
+        }
+        .stat-num { font-size: 56px; font-weight: 800; color: var(--primary); line-height: 1; }
+        .stat-label { font-size: 16px; opacity: 0.8; }
+
+        /* 4. SERVICE LIST (Список) */
+        .services-block {
+            grid-column: span 1;
+            background-color: var(--accent);
+        }
+        .services-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .services-list li:last-child { border: none; }
+        .check-icon { color: var(--primary); }
+
+        /* 5. PRICE BLOCK (Велика ціна) */
+        .price-block {
+            grid-column: span 1;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border: 2px solid var(--primary); /* Синя рамка */
+        }
+        .price-tag { font-size: 42px; font-weight: 800; color: var(--primary); }
+        .price-sub { color: var(--text-muted); font-size: 14px; }
+
+        /* 6. WIDE BOTTOM (Нижній блок) */
+        .wide-block {
+            grid-column: span 3; /* На всю ширину */
+            background: linear-gradient(90deg, #4361EE 0%, #3046B5 100%);
+            color: white;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 48px;
+        }
+        
+        .wide-text h2 { font-size: 32px; margin-bottom: 8px; }
+        .wide-text p { opacity: 0.9; }
+        
+        .white-btn {
+            background: white;
+            color: var(--primary);
+            padding: 14px 28px;
+            border-radius: var(--radius-btn);
+            font-weight: 700;
+        }
+
+        /* --- МОБІЛЬНА ВЕРСІЯ --- */
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr; /* Все в одну колонку */
+                grid-auto-rows: auto;
+            }
+            .hero-block, .photo-block, .services-block, .price-block, .wide-block {
+                grid-column: span 1;
+            }
+            .wide-block { flex-direction: column; text-align: center; gap: 20px; }
+            .hero-title { font-size: 36px; }
+            nav { flex-direction: column; gap: 15px; }
+            .nav-links { display: none; } /* Сховаємо меню на моб */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <nav>
+            <div class="logo">Охайно<span>.</span></div>
+            <div class="nav-links">
+                <a href="#">Послуги</a>
+                <a href="#">Ціни</a>
+                <a href="#">Про нас</a>
+            </div>
+            <a href="tel:+380997146697" class="nav-btn">Зателефонувати</a>
+        </nav>
+
+        <div class="bento-grid">
+            
+            <div class="card hero-block">
+                <div>
+                    <h1 class="hero-title">Клінінг, який <br>ви <span>полюбите</span></h1>
+                    <p class="hero-desc">Професійне прибирання квартир та офісів у Києві. Чисто, швидко та безпечно.</p>
+                    <a href="#" class="cta-btn">Замовити прибирання</a>
+                </div>
+            </div>
+
+            <div class="card photo-block">
+                <img src="images/cleaning-hero.jpg" alt="Чиста кімната" onerror="this.style.display='none'">
+                </div>
+
+            <div class="card stat-block">
+                <div>
+                    <div class="stat-num">500+</div>
+                    <div class="stat-label">Задоволених клієнтів</div>
+                </div>
+                <div style="margin-top: auto;">
+                    <div class="stat-num">4.9</div>
+                    <div class="stat-label">Середня оцінка</div>
+                </div>
+            </div>
+
+            <div class="card services-block">
+                <h3 style="margin-bottom: 20px; font-size: 22px;">Що ми робимо?</h3>
+                <ul class="services-list">
+                    <li><span class="check-icon">✓</span> Генеральне прибирання</li>
+                    <li><span class="check-icon">✓</span> Миття вікон</li>
+                    <li><span class="check-icon">✓</span> Хімчистка меблів</li>
+                    <li><span class="check-icon">✓</span> Прибирання після ремонту</li>
+                </ul>
+            </div>
+
+            <div class="card price-block">
+                <h3 style="margin-bottom: 20px; font-size: 22px;">Базове прибирання квартири</h3>
+                <div class="price-tag">від 1190 грн</div>
+                <div class="price-sub">до 40 м², 2-3 години</div>
+            </div>
+
+            <div class="card wide-block">
+                <div class="wide-text">
+                    <h2>Готові до чистоти?</h2>
+                    <p>Замовляйте дзвінок прямо зараз, ми на зв'язку.</p>
+                </div>
+                <a href="#" class="white-btn">Замовити дзвінок</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
